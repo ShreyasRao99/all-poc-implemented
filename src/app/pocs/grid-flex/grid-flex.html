@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="flex flex-row gap-2">
+      @for (type of pokemonTypes()?.results; track $index) {
+        <button class="btn btn-sm btn-success">{{type.name}}</button>
+      }
+    </div>
+    @for (pokemon of pokemonDetails()?.results; track pokemon.name) {
+      <div class="col-3 my-3">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">{{ pokemon.name }}</h5>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<main class="mx-4">
+  @if (loading()) {
+    Content Loading
+  } @else {
+    <title>Pokédex</title>
+    <article>
+      <header>
+        <h1>Name: {{ pokemonDetails()?.name }}</h1>
+        <span>ID: {{ pokemonDetails()?.id }}</span>
+      </header>
+      <figure>
+        <img [src]="pokemonDetails()?.sprites.front_default" alt="" />
+      </figure>
+      <section>
+        <h3>Physical Attributes</h3>
+        <dl>
+          <dt>Height</dt>
+          <dd>0.4 m</dd>
+          <dt>Weight</dt>
+          <dd>6 kg</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>Abilities</h3>
+        <dl>
+          @for (ability of pokemonDetails()?.abilities; track $index) {
+            @if (!ability.is_hidden) {
+              <dt>Normal Abilities</dt>
+              <dd>
+                {{ ability.ability.name }}
+              </dd>
+            } @else {
+              <dt>Hidden Abilities</dt>
+              <dd>
+                {{ ability.ability.name }}
+              </dd>
+            }
+          }
+        </dl>
+      </section>
+    </article>
+    <footer>Pokémon data provided by PokéAPI</footer>
+    <button class="btn btn-primary btn-sm" (click)="action('prev')">Prev</button>
+    <span class="mx-2">{{ id() }}</span>
+    <button class="btn btn-primary btn-sm" (click)="action('next')">Next</button>
+  }
+</main>
