@@ -3,9 +3,11 @@
     Content Loading
   } @else {
     <title>Pokédex</title>
-    <article>
+    <article class="card p-4">
+      <button class="btn btn-primary btn-sm" (click)="markAsFavourite(pokemonDetails()?.id)" [disabled]="disableFavourite()">Mark As Favourite</button>
       <header>
         <h1>Name: {{ pokemonDetails()?.name }}</h1>
+        <h1>Favourite:{{disableFavourite() === true ? 'Yes' : 'No'}}</h1>
         <span>ID: {{ pokemonDetails()?.id }}</span>
       </header>
       <figure>

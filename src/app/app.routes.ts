@@ -16,4 +16,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pocs/grid-flex/grid-flex').then((m) => m.GridFlex),
   },
+  {
+    path:"hoisting",
+    loadComponent: () => import('./pocs/hoisting/hoisting').then(m=>m.Hoisting)
+  }
 ];

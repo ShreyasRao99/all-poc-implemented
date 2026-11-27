@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Pokemon } from '../../../types/pokemon.type';
 import { finalize } from 'rxjs';
+import { FavouritesBroadcast } from '../../services/favourites-broadcast';
 
 @Component({
   imports: [],
@@ -15,8 +16,13 @@ export class SemanticElements implements OnInit {
   private pokemonDetails = signal<Pokemon | null>(null);
   private id = signal(1);
   private loading = signal(false);
+  private favouriteBroadcastService = inject(FavouritesBroadcast);
+  private disableFavourite = computed(()=>{
+    return (this.favouriteBroadcastService.favourites()?.includes(String(this.pokemonDetails()?.id)));
+  })
 
   ngOnInit(): void {
+    console.log(this.favouriteBroadcastService.favourites())
     this.getData();
   }
 
@@ -31,6 +37,14 @@ export class SemanticElements implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  markAsFavourite(id:number|undefined){
+    if(id){
+      const saved = this.favouriteBroadcastService.favourites();
+      console.log(saved)
+      this.favouriteBroadcastService.setFavourites([...(saved ? saved : []), String(id)])
+    }
   }
 
   action(type: string) {

@@ -1,3 +1,22 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'tailwindcss';
 
+:root {
+  --color-scheme: light;
+  --surface: #ffffff;
+  --text-color: black;
+  --accent-color: #ffffff;
+  --card-shadow: grey;
+  --border-color: grey;
+  --card-shadow: grey;
+}
+
+[data-theme='dark'] {
+  --color-scheme: black;
+  --surface: black;
+  --text-color: white;
+  --accent-color: #000000;
+  --card-shadow: 000000;
+  --border-color: 000000;
+  --card-shadow: 000000;
+}
