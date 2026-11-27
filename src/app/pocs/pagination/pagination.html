@@ -1,0 +1,11 @@
+<div>
+    <button class="btn btn-primary btn-sm" (click)="changePage('prev')">Prev</button>
+    {{pageNumber()}}
+    <button class="btn btn-primary btn-sm" (click)="changePage('next')">Next</button>
+    <select class="mx-2" name="size" id="size" [value]="pageSize()" (change)="pageSizeChange($event)">
+        <option value=5>5</option>
+        <option value=10>10</option>
+        <option value=15>15</option>
+        <option value=20>20</option>
+    </select>
+</div>

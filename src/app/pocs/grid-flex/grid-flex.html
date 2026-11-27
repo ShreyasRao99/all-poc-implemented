@@ -2,7 +2,7 @@
   <div class="row">
     <div class="flex flex-row gap-2">
       @for (type of pokemonTypes()?.results; track $index) {
-        <button class="btn btn-sm btn-success">{{type.name}}</button>
+        <button class="btn btn-sm btn-success">{{ type.name }}</button>
       }
     </div>
     @for (pokemon of pokemonDetails()?.results; track pokemon.name) {
@@ -15,4 +15,8 @@
       </div>
     }
   </div>
+  @let count = pokemonDetails()?.count;
+  @if (count) {
+    <app-pagination [totalCount]="count" (oAndP)="setLimitAndOffset($event)"></app-pagination>
+  }
 </div>
